@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片上传展示</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>以图搜索系统</h1>
+    <h2>这是您上传的图片</h2>
+    <div id="source_pic" >
+        <img src="../static/cached_images/test.jpg" width="450px" height="450px">
+    </div>
+    <h2>相似图片展示</h2>
+    <div id="image-gallery" d="{{data}}" style="display: flex; flex-wrap: wrap">
+    </div>
+    <script >
+        var w = window.innerWidth;
+        var data = document.getElementById('image-gallery').getAttribute('d');//绑定以获取data值
+        arr=JSON.parse(data);
+        var lst = arr.output;
+        console.log("从Flask获取的参数：", arr);
+        for(let i = 0; i< lst.length ; i++){
+        var img_node = document.createElement('img');
+        var fig_node = document.createElement('figure');
+        var fig_cap1 = document.createElement('figcaption');
+        var fig_cap2 = document.createElement('figcaption');
+        var path = lst[i].path;
+        var distance  = lst[i].distance;
+        //img_node.src = "../static/output_images/" +  i + ".jpg";
+        img_node.src = "http://222.186.42.181:25001/" + lst[i].path;
+        img_node.style.width = "220px";
+        img_node.style.height = "228px";
+        fig_cap1.textContent = "path :" + path;
+        fig_cap2.textContent = "distance :" + distance.toString();
+        fig_node.appendChild(img_node);
+        fig_node.appendChild(fig_cap1);
+        fig_node.appendChild(fig_cap2);
+        fig_node.style.width = "270px"
+        fig_node.style.height = "280px"
+        document.getElementById("image-gallery").appendChild(fig_node);
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask上传图片演示</title>
+</head>
+<body>
+    <h1>请上传上传本地图片进行同款相似商品查询一</h1>
+    <form action="/upload" enctype='multipart/form-data' method='POST'>
+        <input type="file" name="file" style="margin-top:20px;"/>
+<!--        <br>-->
+<!--        <i>请输入你当前的心情（开心、超开心、超超开心）：</i>-->
+<!--        <input type="text" class="txt_input" name="name"  value="超超开心" style="margin-top:10px;"/>-->
+        <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
+
+
+
+    </form>
+    <form action="/url_search" enctype='multipart/form-data' method='POST'>
+        <h1>请上传上传url链接进行同款相似商品查询一</h1>
+        <input type="url" name="url_input">
+        <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
+         <p>选择TopK</p>
+        <select name="topk" >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+    </form>
+</body>
+</html>
